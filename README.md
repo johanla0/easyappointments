@@ -26,7 +26,7 @@
   <a href="#features">Features</a> •
   <a href="#setup">Setup</a> •
   <a href="#installation">Installation</a> •
-  <a href="#this_mod">This mod</a> •
+  <a href="#this-mod">This mod</a> •
   <a href="#license">License</a>
 </p>
 
