@@ -31,7 +31,11 @@ class Providers implements ParsersInterface {
         $encoded_response = [
             'id' => array_key_exists('id', $response) ? (int)$response['id'] : NULL,
             'firstName' => $response['first_name'],
+            'middleName' => $response['middle_name'],
             'lastName' => $response['last_name'],
+            'status' => $response['status'],
+            'birthDate' => $response['birth_date'],
+            'position' => $response['position'],
             'email' => $response['email'],
             'mobile' => $response['mobile_number'],
             'phone' => $response['phone_number'],
@@ -101,9 +105,29 @@ class Providers implements ParsersInterface {
             $decoded_request['first_name'] = $request['firstName'];
         }
 
+        if ( array_key_exists('middleName', $request))
+        {
+            $decoded_request['middle_name'] = $request['middleName'];
+        }
+
         if (array_key_exists('lastName', $request))
         {
             $decoded_request['last_name'] = $request['lastName'];
+        }
+
+        if ( array_key_exists('birthDate', $request))
+        {
+            $decoded_request['birth_date'] = $request['birthDate'];
+        }
+
+        if ( array_key_exists('status', $request))
+        {
+            $decoded_request['status'] = $request['status'];
+        }
+
+        if ( array_key_exists('position', $request))
+        {
+            $decoded_request['position'] = $request['position'];
         }
 
         if (array_key_exists('email', $request))

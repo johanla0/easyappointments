@@ -28,23 +28,27 @@
      */
     UserSettings.prototype.get = function () {
         var user = {
-            id: $('#user-id').val(),
-            first_name: $('#first-name').val(),
-            last_name: $('#last-name').val(),
-            email: $('#email').val(),
-            mobile_number: $('#mobile-number').val(),
-            phone_number: $('#phone-number').val(),
-            address: $('#address').val(),
-            city: $('#city').val(),
-            state: $('#state').val(),
-            zip_code: $('#zip-code').val(),
-            notes: $('#notes').val(),
-            timezone: $('#timezone').val(),
+            id: $("#user-id").val(),
+            first_name: $("#first-name").val(),
+            middle_name: $("#middle-name").val(),
+            last_name: $("#last-name").val(),
+            email: $("#email").val(),
+            mobile_number: $("#mobile-number").val(),
+            phone_number: $("#phone-number").val(),
+            birth_date: $("#birth-date").val(),
+            status: $("#status").val(),
+            position: $("#position").val(),
+            address: $("#address").val(),
+            city: $("#city").val(),
+            state: $("#state").val(),
+            zip_code: $("#zip-code").val(),
+            notes: $("#notes").val(),
+            timezone: $("#timezone").val(),
             settings: {
-                username: $('#username').val(),
-                notifications: $('#user-notifications').prop('checked'),
-                calendar_view: $('#calendar-view').val()
-            }
+                username: $("#username").val(),
+                notifications: $("#user-notifications").prop("checked"),
+                calendar_view: $("#calendar-view").val(),
+            },
         };
 
         if ($('#password').val()) {

@@ -110,8 +110,12 @@ window.BackendSettings = window.BackendSettings || {};
         // Load user settings into form
         $('#user-id').val(GlobalVariables.settings.user.id);
         $('#first-name').val(GlobalVariables.settings.user.first_name);
+        $('#middle-name').val(GlobalVariables.settings.user.middle_name);
         $('#last-name').val(GlobalVariables.settings.user.last_name);
         $('#email').val(GlobalVariables.settings.user.email);
+        $("#birth-date").val(GlobalVariables.settings.user.birth_date);
+        $("#status").val(GlobalVariables.settings.user.status);
+        $("#position").val(GlobalVariables.settings.user.position);
         $('#mobile-number').val(GlobalVariables.settings.user.mobile_number);
         $('#phone-number').val(GlobalVariables.settings.user.phone_number);
         $('#address').val(GlobalVariables.settings.user.address);

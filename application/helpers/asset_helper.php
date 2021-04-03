@@ -28,14 +28,14 @@ function asset_url($uri = '', $protocol = NULL)
 
     $cache_busting_token = ! $debug ? '?' . config('cache_busting_token') : '';
 
-    if (strpos(basename($uri), '.js') !== FALSE && strpos(basename($uri), '.min.js') === FALSE && ! $debug)
+    if (strpos(basename($uri), '.js') !== FALSE && strpos(basename($uri), '.js') === FALSE && ! $debug)
     {
-        $uri = str_replace('.js', '.min.js', $uri);
+        $uri = str_replace('.js', '.js', $uri);
     }
 
-    if (strpos(basename($uri), '.css') !== FALSE && strpos(basename($uri), '.min.css') === FALSE && ! $debug)
+    if (strpos(basename($uri), '.css') !== FALSE && strpos(basename($uri), '.css') === FALSE && ! $debug)
     {
-        $uri = str_replace('.css', '.min.css', $uri);
+        $uri = str_replace('.css', '.css', $uri);
     }
 
     return base_url($uri . $cache_busting_token, $protocol);

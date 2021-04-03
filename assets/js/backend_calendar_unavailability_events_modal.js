@@ -223,7 +223,18 @@ window.BackendCalendarUnavailabilityEventsModal = window.BackendCalendarUnavaila
         for (var index in GlobalVariables.availableProviders) {
             var provider = GlobalVariables.availableProviders[index];
 
-            $unavailabilityProvider.append(new Option(provider.first_name + ' ' + provider.last_name, provider.id));
+            $unavailabilityProvider.append(
+                new Option(
+                    provider.first_name +
+                        " " +
+                        provider?.middle_name +
+                        " " +
+                        provider.last_name +
+                        " | " +
+                        provider.status,
+                    provider.id
+                )
+            );
         }
 
         bindEventHandlers();

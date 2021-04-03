@@ -304,6 +304,14 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label class="control-label" for="middle-name">
+                                        <?= lang('middle_name') ?>
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input id="middle-name" class="form-control required">
+                                </div>
+
+                                <div class="form-group">
                                     <label for="last-name" class="control-label">
                                         <?= lang('last_name') ?>
                                         <span class="text-danger">*</span>
@@ -317,6 +325,21 @@
                                         <span class="text-danger">*</span>
                                     </label>
                                     <input id="email" class="required form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="birth-date" class="control-label">
+                                        <?= lang('birth_date') ?>
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input id="birth-date" class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="status" class="control-label">
+                                        <?= lang('status') ?>
+                                    </label>
+                                    <input id="status" class="form-control">
                                 </div>
 
                                 <div class="form-group">

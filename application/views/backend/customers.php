@@ -106,11 +106,26 @@
                     </div>
 
                     <div class="form-group">
+                        <label class="control-label" for="middle-name">
+                            <?= lang('middle_name') ?>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input id="middle-name" class="form-control required">
+                    </div>
+
+                    <div class="form-group">
                         <label class="control-label" for="last-name">
                             <?= lang('last_name') ?>
                             <span class="text-danger">*</span>
                         </label>
                         <input id="last-name" class="form-control required">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="birth-date">
+                            <?= lang('birth_date') ?>
+                        </label>
+                        <input type="date" id="birth-date" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -127,6 +142,13 @@
                             <?= $require_phone_number === '1' ? '<span class="text-danger">*</span>' : ''; ?></label>
                         <input id="phone-number" class="form-control
                             <?= $require_phone_number === '1' ? 'required' : '' ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="status">
+                            <?= lang('status') ?>
+                        </label>
+                        <input id="status" class="form-control" maxlength="256">
                     </div>
 
                     <div class="form-group">
@@ -152,7 +174,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="language">
+                        <label class="control-label" for="language">
                             <?= lang('language') ?>
                             <span class="text-danger">*</span>
                         </label>

@@ -142,24 +142,30 @@
          */
         $('#providers').on('click', '#save-provider', function () {
             var provider = {
-                first_name: $('#provider-first-name').val(),
-                last_name: $('#provider-last-name').val(),
-                email: $('#provider-email').val(),
-                mobile_number: $('#provider-mobile-number').val(),
-                phone_number: $('#provider-phone-number').val(),
-                address: $('#provider-address').val(),
-                city: $('#provider-city').val(),
-                state: $('#provider-state').val(),
-                zip_code: $('#provider-zip-code').val(),
-                notes: $('#provider-notes').val(),
-                timezone: $('#provider-timezone').val(),
+                first_name: $("#provider-first-name").val(),
+                middle_name: $("#provider-middle-name").val(),
+                last_name: $("#provider-last-name").val(),
+                email: $("#provider-email").val(),
+                birth_date: $("#provider-birth-date").val(),
+                status: $("#provider-status").val(),
+                position: $("#provider-position").val(),
+                mobile_number: $("#provider-mobile-number").val(),
+                phone_number: $("#provider-phone-number").val(),
+                address: $("#provider-address").val(),
+                city: $("#provider-city").val(),
+                state: $("#provider-state").val(),
+                zip_code: $("#provider-zip-code").val(),
+                notes: $("#provider-notes").val(),
+                timezone: $("#provider-timezone").val(),
                 settings: {
-                    username: $('#provider-username').val(),
+                    username: $("#provider-username").val(),
                     working_plan: JSON.stringify(BackendUsers.wp.get()),
-                    working_plan_exceptions: JSON.stringify(BackendUsers.wp.getWorkingPlanExceptions()),
-                    notifications: $('#provider-notifications').prop('checked'),
-                    calendar_view: $('#provider-calendar-view').val()
-                }
+                    working_plan_exceptions: JSON.stringify(
+                        BackendUsers.wp.getWorkingPlanExceptions()
+                    ),
+                    notifications: $("#provider-notifications").prop("checked"),
+                    calendar_view: $("#provider-calendar-view").val(),
+                },
             };
 
             // Include provider services.
@@ -351,7 +357,7 @@
             .val('')
             .prop('disabled', true);
         $('#providers .record-details #provider-calendar-view').val('default');
-        $('#providers .record-details #provider-timezone').val('UTC');
+        $("#providers .record-details #provider-timezone").val("Europe/Moscow");
         $('#providers .add-break, .add-working-plan-exception, #reset-working-plan').prop('disabled', true);
         BackendUsers.wp.timepickers(true);
         $('#providers .working-plan input:text').timepicker('destroy');
@@ -380,8 +386,12 @@
     ProvidersHelper.prototype.display = function (provider) {
         $('#provider-id').val(provider.id);
         $('#provider-first-name').val(provider.first_name);
+        $("#provider-middle-name").val(provider.middle_name);
         $('#provider-last-name').val(provider.last_name);
         $('#provider-email').val(provider.email);
+        $("#provider-status").val(provider.status);
+        $("#provider-birth-date").val(provider.birth_date);
+        $("#provider-position").val(provider.status);
         $('#provider-mobile-number').val(provider.mobile_number);
         $('#provider-phone-number').val(provider.phone_number);
         $('#provider-address').val(provider.address);
@@ -514,7 +524,14 @@
      * @return {String} The html code that represents the record on the filter results list.
      */
     ProvidersHelper.prototype.getFilterHtml = function (provider) {
-        var name = provider.first_name + ' ' + provider.last_name;
+        var name =
+            provider.first_name +
+            " " +
+            provider?.middle_name +
+            " " +
+            provider.last_name +
+            " | " +
+            provider.status,
 
         var info = provider.email;
 

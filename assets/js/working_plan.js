@@ -57,7 +57,7 @@
         $.each(workingPlanSorted, function (index, workingDay) {
             var day = this.convertValueToDay(index);
 
-            var dayDisplayName = GeneralFunctions.upperCaseFirstLetter(day)
+            var dayDisplayName = day
 
             $('<tr/>', {
                 'html': [
@@ -375,11 +375,11 @@
                 'html': [
                     $('<td/>', {
                         'class': 'break-day editable',
-                        'text': EALang.sunday
+                        'text': EALang.monday
                     }),
                     $('<td/>', {
                         'class': 'break-start editable',
-                        'text': Date.parse('12:00:00').toString(timeFormat)
+                        'text': Date.parse('13:00:00').toString(timeFormat)
                     }),
                     $('<td/>', {
                         'class': 'break-end editable',

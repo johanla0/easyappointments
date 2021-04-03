@@ -90,27 +90,33 @@ window.BackendUsers = window.BackendUsers || {};
         });
 
         GlobalVariables.providers.forEach(function (provider) {
-            $('<div/>', {
-                'class': 'checkbox',
-                'html': [
-                    $('<div/>', {
-                        'class': 'checkbox form-check',
-                        'html': [
-                            $('<input/>', {
-                                'class': 'form-check-input',
-                                'type': 'checkbox',
-                                'data-id': provider.id
+            $("<div/>", {
+                class: "checkbox",
+                html: [
+                    $("<div/>", {
+                        class: "checkbox form-check",
+                        html: [
+                            $("<input/>", {
+                                class: "form-check-input",
+                                type: "checkbox",
+                                "data-id": provider.id,
                             }),
-                            $('<label/>', {
-                                'class': 'form-check-label',
-                                'text': provider.first_name + ' ' + provider.last_name,
-                                'for': provider.id
-                            })
-                        ]
-                    })
-                ]
-            })
-                .appendTo('#secretary-providers');
+                            $("<label/>", {
+                                class: "form-check-label",
+                                text:
+                                    provider.first_name +
+                                    " " +
+                                    provider?.middle_name +
+                                    " " +
+                                    provider.last_name +
+                                    " | " +
+                                    provider.status,
+                                for: provider.id,
+                            }),
+                        ],
+                    }),
+                ],
+            }).appendTo("#secretary-providers");
         });
 
         // Bind event handlers.
@@ -160,30 +166,36 @@ window.BackendUsers = window.BackendUsers || {};
                         $('#secretary-providers').empty();
 
                         GlobalVariables.providers.forEach(function (provider) {
-                            $('<div/>', {
-                                'class': 'checkbox',
-                                'html': [
-                                    $('<div/>', {
-                                        'class': 'checkbox form-check',
-                                        'html': [
-                                            $('<input/>', {
-                                                'class': 'form-check-input',
-                                                'type': 'checkbox',
-                                                'data-id': provider.id,
-                                                'prop': {
-                                                    'disabled': true
-                                                }
+                            $("<div/>", {
+                                class: "checkbox",
+                                html: [
+                                    $("<div/>", {
+                                        class: "checkbox form-check",
+                                        html: [
+                                            $("<input/>", {
+                                                class: "form-check-input",
+                                                type: "checkbox",
+                                                "data-id": provider.id,
+                                                prop: {
+                                                    disabled: true,
+                                                },
                                             }),
-                                            $('<label/>', {
-                                                'class': 'form-check-label',
-                                                'text': provider.first_name + ' ' + provider.last_name,
-                                                'for': provider.id
+                                            $("<label/>", {
+                                                class: "form-check-label",
+                                                text:
+                                                    provider.first_name +
+                                                    " " +
+                                                    provider?.middle_name +
+                                                    " " +
+                                                    provider.last_name +
+                                                    " | " +
+                                                    provider.status,
+                                                for: provider.id,
                                             }),
-                                        ]
-                                    })
-                                ]
-                            })
-                                .appendTo('#secretary-providers');
+                                        ],
+                                    }),
+                                ],
+                            }).appendTo("#secretary-providers");
                         });
                     });
             }
