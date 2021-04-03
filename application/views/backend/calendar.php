@@ -330,9 +330,8 @@
                                 <div class="form-group">
                                     <label for="birth-date" class="control-label">
                                         <?= lang('birth_date') ?>
-                                        <span class="text-danger">*</span>
                                     </label>
-                                    <input id="birth-date" class="form-control">
+                                    <input type="date" id="birth-date" class="form-control">
                                 </div>
 
                                 <div class="form-group">
