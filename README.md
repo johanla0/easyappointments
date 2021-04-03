@@ -7,6 +7,7 @@
     Easy!Appointments
     <br>
 </h1>
+<h3 align="center">Private Practice Mod</h3>
 
 <br>
 
@@ -25,6 +26,7 @@
   <a href="#features">Features</a> •
   <a href="#setup">Setup</a> •
   <a href="#installation">Installation</a> •
+  <a href="#this_mod">This mod</a> •
   <a href="#license">License</a>
 </p>
 
@@ -91,6 +93,15 @@ If you have problems installing or configuring the application visit the
 [official support group](https://groups.google.com/forum/#!forum/easy-appointments).
 You can also report problems on the [issues page](https://github.com/alextselegidis/easyappointments/issues)
 and help the development progress.
+
+## This mod
+
+Contains customization made for better use for a Russian private practitioner such as:
+- middle name (patronymic)
+- date of birth
+- status
+
+Some UI elements were updated to show that info where it is useful.
 
 ## License 
 
