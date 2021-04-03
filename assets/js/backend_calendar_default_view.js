@@ -122,8 +122,11 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                 var customer = appointment.customer;
                 $dialog.find('#customer-id').val(appointment.id_users_customer);
                 $dialog.find('#first-name').val(customer.first_name);
+                $dialog.find('#middle-name').val(customer.middle_name);
                 $dialog.find('#last-name').val(customer.last_name);
                 $dialog.find('#email').val(customer.email);
+                $dialog.find("#birth-date").val(customer.birth_date);
+                $dialog.find("#status").val(customer.status);
                 $dialog.find('#phone-number').val(customer.phone_number);
                 $dialog.find('#address').val(customer.address);
                 $dialog.find('#city').val(customer.city);
@@ -438,7 +441,7 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                         'text': EALang.provider
                     }),
                     $('<span/>', {
-                        'text': event.data ? event.data.provider.first_name + ' ' + event.data.provider.last_name : '-'
+                        'text': event.data ? event.data.provider.first_name + ' ' + event.data.provider.middle_name + ' ' + event.data.provider.last_name : '-'
                     }),
                     $('<br/>'),
 
@@ -561,7 +564,7 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                     }),
                     GeneralFunctions.renderMapIcon(event.data.provider),
                     $('<span/>', {
-                        'text': event.data.provider.first_name + ' ' + event.data.provider.last_name
+                        'text': event.data.provider.first_name + ' ' + event.data.provider.middle_name + ' ' + event.data.provider.last_name + ' | ' + event.data.provider.status
                     }),
                     $('<br/>'),
 
@@ -571,8 +574,7 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                     }),
                     GeneralFunctions.renderMapIcon(event.data.customer),
                     $('<span/>', {
-                        'class': 'd-inline-block ml-1',
-                        'text': event.data.customer.first_name + ' ' + event.data.customer.last_name
+                        'text': event.data.customer.first_name + ' ' + event.data.customer.middle_name + ' ' + event.data.customer.last_name + ' | ' + event.data.customer.status
                     }),
                     $('<br/>'),
 
@@ -1531,12 +1533,19 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                 'html': GlobalVariables.availableProviders.map(function (availableProvider) {
                     var hasGoogleSync = availableProvider.settings.google_sync === '1' ? 'true' : 'false';
 
-                    return $('<option/>', {
-                        'value': availableProvider.id,
-                        'type': FILTER_TYPE_PROVIDER,
-                        'google-sync': hasGoogleSync,
-                        'text': availableProvider.first_name + ' ' + availableProvider.last_name
-                    })
+                    return $("<option/>", {
+                        value: availableProvider.id,
+                        type: FILTER_TYPE_PROVIDER,
+                        "google-sync": hasGoogleSync,
+                        text:
+                            availableProvider.first_name +
+                            " " +
+                            availableProvider.middle_name +
+                            " " +
+                            availableProvider.last_name +
+                            " | " +
+                            availableProvider.status,
+                    });
                 })
             })
                 .appendTo('#select-filter-item');
@@ -1610,8 +1619,11 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
             var customer = appointment.customer;
             $dialog.find('#customer-id').val(appointment.id_users_customer);
             $dialog.find('#first-name').val(customer.first_name);
+            $dialog.find('#middle-name').val(customer.middle_name);
             $dialog.find('#last-name').val(customer.last_name);
             $dialog.find('#email').val(customer.email);
+            $dialog.find("#birth-date").val(customer.birth_date);
+            $dialog.find("#status").val(customer.status);
             $dialog.find('#phone-number').val(customer.phone_number);
             $dialog.find('#address').val(customer.address);
             $dialog.find('#city').val(customer.city);

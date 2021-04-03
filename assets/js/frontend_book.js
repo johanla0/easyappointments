@@ -65,7 +65,7 @@ window.FrontendBook = window.FrontendBook || {};
                         text: '#666666'
                     },
                     button: {
-                        background: '#429a82',
+                        background: '#78b078',
                         text: '#ffffff'
                     }
                 },
@@ -130,7 +130,7 @@ window.FrontendBook = window.FrontendBook || {};
             }
         });
 
-        $('#select-timezone').val(Intl.DateTimeFormat().resolvedOptions().timeZone);
+        $("#select-timezone").val("Europe/Moscow");
 
         // Bind the event handlers (might not be necessary every time we use this class).
         if (defaultEventHandlers) {
@@ -227,7 +227,8 @@ window.FrontendBook = window.FrontendBook || {};
                 }).length > 0;
 
                 if (canServeService) {
-                    $('#select-provider').append(new Option(provider.first_name + ' ' + provider.last_name, provider.id));
+                  console.log(JSON.stringify(provider));
+                    $('#select-provider').append(new Option(provider.first_name + ' ' + provider?.middle_name + ' ' + provider.last_name + ' | ' + provider.status, provider.id));
                 }
             });
 
@@ -559,67 +560,82 @@ window.FrontendBook = window.FrontendBook || {};
         })
             .appendTo('#appointment-details');
 
-        // Customer Details
+        // User Details
         var firstName = GeneralFunctions.escapeHtml($('#first-name').val());
+        var middleName = GeneralFunctions.escapeHtml($('#middle-name').val());
         var lastName = GeneralFunctions.escapeHtml($('#last-name').val());
         var phoneNumber = GeneralFunctions.escapeHtml($('#phone-number').val());
         var email = GeneralFunctions.escapeHtml($('#email').val());
+        var status = GeneralFunctions.escapeHtml($("#status").val());
         var address = GeneralFunctions.escapeHtml($('#address').val());
         var city = GeneralFunctions.escapeHtml($('#city').val());
         var zipCode = GeneralFunctions.escapeHtml($('#zip-code').val());
 
         $('#customer-details').empty();
 
-        $('<div/>', {
-            'html': [
-                $('<h4/>)', {
-                    'text': EALang.customer
+        $("<div/>", {
+            html: [
+                $("<h4/>)", {
+                    text: EALang.customer,
                 }),
-                $('<p/>', {
-                    'html': [
-                        $('<span/>', {
-                            'text': EALang.customer + ': ' + firstName + ' ' + lastName
+                $("<p/>", {
+                    html: [
+                        $("<span/>", {
+                            text:
+                                EALang.customer +
+                                ": " +
+                                firstName +
+                                " " +
+                                middleName +
+                                " " +
+                                lastName,
                         }),
-                        $('<br/>'),
-                        $('<span/>', {
-                            'text': EALang.phone_number + ': ' + phoneNumber
+                        $("<br/>"),
+                        $("<span/>", {
+                            text: EALang.phone_number + ": " + phoneNumber,
                         }),
-                        $('<br/>'),
-                        $('<span/>', {
-                            'text': EALang.email + ': ' + email
+                        $("<br/>"),
+                        $("<span/>", {
+                            text: EALang.email + ": " + email,
                         }),
-                        $('<br/>'),
-                        $('<span/>', {
-                            'text': address ? EALang.address + ': ' + address : ''
+                        $("<br/>"),
+                        $("<span/>", {
+                            text: address
+                                ? EALang.address + ": " + address
+                                : "",
                         }),
-                        $('<br/>'),
-                        $('<span/>', {
-                            'text': city ? EALang.city + ': ' + city : ''
+                        $("<br/>"),
+                        $("<span/>", {
+                            text: city ? EALang.city + ": " + city : "",
                         }),
-                        $('<br/>'),
-                        $('<span/>', {
-                            'text': zipCode ? EALang.zip_code + ': ' + zipCode : ''
+                        $("<br/>"),
+                        $("<span/>", {
+                            text: zipCode
+                                ? EALang.zip_code + ": " + zipCode
+                                : "",
                         }),
-                        $('<br/>'),
-                    ]
-                })
-            ]
-        })
-            .appendTo('#customer-details');
+                        $("<br/>"),
+                    ],
+                }),
+            ],
+        }).appendTo("#customer-details");
 
 
         // Update appointment form data for submission to server when the user confirms the appointment.
         var data = {};
 
         data.customer = {
-            last_name: $('#last-name').val(),
-            first_name: $('#first-name').val(),
-            email: $('#email').val(),
-            phone_number: $('#phone-number').val(),
-            address: $('#address').val(),
-            city: $('#city').val(),
-            zip_code: $('#zip-code').val(),
-            timezone: $('#select-timezone').val()
+            last_name: $("#last-name").val(),
+            first_name: $("#first-name").val(),
+            middle_name: $("#middle-name").val(),
+            email: $("#email").val(),
+            birth_date: $("#birth-date").val(),
+            status: $("#status").val(),
+            phone_number: $("#phone-number").val(),
+            address: $("#address").val(),
+            city: $("#city").val(),
+            zip_code: $("#zip-code").val(),
+            timezone: $("#select-timezone").val(),
         };
 
         data.appointment = {
@@ -694,8 +710,11 @@ window.FrontendBook = window.FrontendBook || {};
 
             // Apply Customer's Data
             $('#last-name').val(customer.last_name);
+            $('#middle-name').val(customer.middle_name);
             $('#first-name').val(customer.first_name);
             $('#email').val(customer.email);
+            $("#birth-date").val(customer.birth_date);
+            $("#status").val(customer.status);
             $('#phone-number').val(customer.phone_number);
             $('#address').val(customer.address);
             $('#city').val(customer.city);
@@ -764,7 +783,7 @@ window.FrontendBook = window.FrontendBook || {};
 
         if (Number(service.price) > 0) {
             $('<span/>', {
-                'text': '[' + EALang.price + ' ' + service.price + ' ' + service.currency + ']'
+                'text': '[' + EALang.price + ' ' + service.price + ' ' + service.currency + EALang.price_warning + ']'
             })
                 .appendTo($serviceDescription);
         }

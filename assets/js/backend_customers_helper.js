@@ -119,16 +119,19 @@
          */
         $('#customers').on('click', '#save-customer', function () {
             var customer = {
-                first_name: $('#first-name').val(),
-                last_name: $('#last-name').val(),
-                email: $('#email').val(),
-                phone_number: $('#phone-number').val(),
-                address: $('#address').val(),
-                city: $('#city').val(),
-                zip_code: $('#zip-code').val(),
-                notes: $('#notes').val(),
-                timezone: $('#timezone').val(),
-                language: $('#language').val() || 'english'
+                first_name: $("#first-name").val(),
+                middle_name: $("#middle-name").val(),
+                last_name: $("#last-name").val(),
+                email: $("#email").val(),
+                birth_date: $("#birth-date").val(),
+                status: $("#status").val(),
+                phone_number: $("#phone-number").val(),
+                address: $("#address").val(),
+                city: $("#city").val(),
+                zip_code: $("#zip-code").val(),
+                notes: $("#notes").val(),
+                timezone: $("#timezone").val(),
+                language: $("#language").val() || "russian",
             };
 
             if ($('#customer-id').val()) {
@@ -259,9 +262,9 @@
             .find('input, select, textarea')
             .val('')
             .prop('disabled', true);
-        $('.record-details #timezone').val('UTC');
+        $(".record-details #timezone").val("Europe/Moscow");
 
-        $('#language').val('english');
+        $("#language").val("russian");
 
         $('#customer-appointments').empty();
         $('#edit-customer, #delete-customer').prop('disabled', true);
@@ -284,15 +287,18 @@
     CustomersHelper.prototype.display = function (customer) {
         $('#customer-id').val(customer.id);
         $('#first-name').val(customer.first_name);
+        $('#middle-name').val(customer.middle_name);
         $('#last-name').val(customer.last_name);
         $('#email').val(customer.email);
+        $("#birth-date").val(customer.birth_date);
+        $("#status").val(customer.status);
         $('#phone-number').val(customer.phone_number);
         $('#address').val(customer.address);
         $('#city').val(customer.city);
         $('#zip-code').val(customer.zip_code);
         $('#notes').val(customer.notes);
         $('#timezone').val(customer.timezone);
-        $('#language').val(customer.language || 'english');
+        $('#language').val(customer.language || 'russian');
 
         $('#customer-appointments').empty();
 
@@ -328,7 +334,7 @@
                                 'class': 'fas fa-edit mr-1'
                             }),
                             $('<strong/>', {
-                                'text': appointment.service.name + ' - ' + appointment.provider.first_name + ' ' + appointment.provider.last_name
+                                'text': appointment.service.name + ' - ' + appointment.provider.first_name + ' ' + appointment.provider.middle_name + ' ' + appointment.provider.last_name
                             }),
                             $('<br/>'),
                         ]
@@ -424,11 +430,13 @@
      * @return {String} Returns the record HTML code.
      */
     CustomersHelper.prototype.getFilterHtml = function (customer) {
-        var name = customer.first_name + ' ' + customer.last_name;
-
+        var name = customer.first_name + ' ' + customer?.middle_name + ' ' + customer.last_name;
+        
         var info = customer.email;
 
         info = customer.phone_number ? info + ', ' + customer.phone_number : info;
+
+        info = customer.status ? info + ", " + customer.status : info;
 
         return $('<div/>', {
             'class': 'customer-row entry',

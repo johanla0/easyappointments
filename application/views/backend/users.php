@@ -151,11 +151,33 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="provider-middle-name">
+                                            <?= lang('middle_name') ?>
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input id="provider-middle-name" class="form-control required" maxlength="256">
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="provider-last-name">
                                             <?= lang('last_name') ?>
                                             <span class="text-danger">*</span>
                                         </label>
                                         <input id="provider-last-name" class="form-control required" maxlength="512">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="provider-status">
+                                            <?= lang('position') ?>
+                                        </label>
+                                        <input id="provider-status" class="form-control" maxlength="256">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="provider-birth-date">
+                                            <?= lang('birth_date') ?>
+                                        </label>
+                                        <input type="date" id="provider-birth-date" class="form-control">
                                     </div>
 
                                     <div class="form-group">

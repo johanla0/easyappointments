@@ -213,10 +213,10 @@
 
                         <div class="col-12 col-md-6">
                             <div id="select-time">
-                                <div class="form-group">
-                                    <label for="select-timezone"><?= lang('timezone') ?></label>
-                                    <?= render_timezone_dropdown('id="select-timezone" class="form-control" value="UTC"'); ?>
-                                </div>
+                            <div class="form-group">
+                                <label for="select-timezone"><?= lang('timezone') ?></label>
+                                <?= render_timezone_dropdown('id="select-timezone" class="form-control" value="UTC"'); ?>
+                            </div>
 
                                 <div id="available-hours"></div>
                             </div>
@@ -244,6 +244,7 @@
                 <div class="frame-container">
 
                     <h2 class="frame-title"><?= lang('customer_information') ?></h2>
+                    <p class="mt-2 mb-4 text-center"><?= lang('customer_information_protected') ?></p>
 
                     <div class="row frame-content">
                         <div class="col-12 col-md-6">
@@ -253,6 +254,13 @@
                                     <span class="text-danger">*</span>
                                 </label>
                                 <input type="text" id="first-name" class="required form-control" maxlength="100"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label">
+                                    <?= lang('middle_name') ?>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" id="middle-name" class="required form-control" maxlength="100"/>
                             </div>
                             <div class="form-group">
                                 <label for="last-name" class="control-label">

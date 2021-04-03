@@ -71,14 +71,18 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
             }
 
             var customer = {
-                first_name: $dialog.find('#first-name').val(),
-                last_name: $dialog.find('#last-name').val(),
-                email: $dialog.find('#email').val(),
-                phone_number: $dialog.find('#phone-number').val(),
-                address: $dialog.find('#address').val(),
-                city: $dialog.find('#city').val(),
-                zip_code: $dialog.find('#zip-code').val(),
-                notes: $dialog.find('#customer-notes').val()
+                first_name: $dialog.find("#first-name").val(),
+                middle_name: $dialog.find("#middle-name").val(),
+                last_name: $dialog.find("#last-name").val(),
+                birth_date: $dialog.find("#birth-date").val(),
+                status: $dialog.find("#status").val(),
+                position: $dialog.find("#position").val(),
+                email: $dialog.find("#email").val(),
+                phone_number: $dialog.find("#phone-number").val(),
+                address: $dialog.find("#address").val(),
+                city: $dialog.find("#city").val(),
+                zip_code: $dialog.find("#zip-code").val(),
+                notes: $dialog.find("#customer-notes").val(),
             };
 
             if ($dialog.find('#customer-id').val() !== '') {
@@ -187,7 +191,7 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
                 GlobalVariables.customers.forEach(function (customer) {
                     $('<div/>', {
                         'data-id': customer.id,
-                        'text': customer.first_name + ' ' + customer.last_name
+                        'text': customer.first_name + ' ' + customer?.middle_name + ' ' + customer.last_name + ' | ' + customer.birth_date,
                     })
                         .appendTo($list);
                 });
@@ -211,8 +215,11 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
             if (customer) {
                 $('#customer-id').val(customer.id);
                 $('#first-name').val(customer.first_name);
+                $("#middle-name").val(customer.middle_name);
                 $('#last-name').val(customer.last_name);
-                $('#email').val(customer.email);
+                $("#birth-date").val(customer.birth_date),
+                $("#status").val(customer.status);
+                $("#email").val(customer.email);
                 $('#phone-number').val(customer.phone_number);
                 $('#address').val(customer.address);
                 $('#city').val(customer.city);
@@ -253,11 +260,17 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
                         $list.empty();
 
                         response.forEach(function (customer) {
-                            $('<div/>', {
-                                'data-id': customer.id,
-                                'text': customer.first_name + ' ' + customer.last_name
-                            })
-                                .appendTo($list);
+                            $("<div/>", {
+                                "data-id": customer.id,
+                                text:
+                                    customer.first_name +
+                                    " " +
+                                    customer?.middle_name +
+                                    " " +
+                                    customer.last_name +
+                                    " | " +
+                                    customer.birth_date,
+                            }).appendTo($list);
 
                             // Verify if this customer is on the old customer list.
                             var result = GlobalVariables.customers.filter(function (globalVariablesCustomer) {
@@ -276,18 +289,27 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
 
                         GlobalVariables.customers.forEach(function (customer, index) {
                             if (customer.first_name.toLowerCase().indexOf(key) !== -1
+                                || customer.middle_name.toLowerCase().indexOf(key) !== -1
                                 || customer.last_name.toLowerCase().indexOf(key) !== -1
                                 || customer.email.toLowerCase().indexOf(key) !== -1
+                                || customer.status.toLowerCase().indexOf(key) !== -1
+                                || customer.birth_date.toLowerCase().indexOf(key) !== -1
                                 || customer.phone_number.toLowerCase().indexOf(key) !== -1
                                 || customer.address.toLowerCase().indexOf(key) !== -1
                                 || customer.city.toLowerCase().indexOf(key) !== -1
                                 || customer.zip_code.toLowerCase().indexOf(key) !== -1
                                 || customer.notes.toLowerCase().indexOf(key) !== -1) {
-                                $('<div/>', {
-                                    'data-id': customer.id,
-                                    'text': customer.first_name + ' ' + customer.last_name
-                                })
-                                    .appendTo($list);
+                                $("<div/>", {
+                                    "data-id": customer.id,
+                                    text:
+                                        customer.first_name +
+                                        " " +
+                                        customer?.middle_name +
+                                        " " +
+                                        customer.last_name +
+                                        " | " +
+                                        customer.birth_date,
+                                }).appendTo($list);
                             }
                         });
                     })
@@ -332,8 +354,18 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
 
                     // If the current provider is able to provide the selected service, add him to the listbox.
                     if (Number(providerServiceId) === Number(serviceId)) {
-                        $('#select-provider')
-                            .append(new Option(provider.first_name + ' ' + provider.last_name, provider.id));
+                        $("#select-provider").append(
+                            new Option(
+                                provider.first_name +
+                                    " " +
+                                    provider?.middle_name +
+                                    " " +
+                                    provider.last_name +
+                                    " | " +
+                                    provider.status,
+                                provider.id
+                            )
+                        );
                     }
                 });
             });
@@ -350,7 +382,7 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
          * Event: Enter New Customer Button "Click"
          */
         $('#new-customer').on('click', function () {
-            $('#manage-appointment').find('#customer-id, #first-name, #last-name, #email, '
+            $('#manage-appointment').find('#customer-id, #first-name, #middle-name, #last-name, #email, #birth-date, #status, '
                 + '#phone-number, #address, #city, #zip-code, #customer-notes').val('');
         });
     }
@@ -385,8 +417,20 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
             }).length > 0;
 
             if (canProvideService) { // Add the provider to the listbox.
-                $dialog.find('#select-provider')
-                    .append(new Option(provider.first_name + ' ' + provider.last_name, provider.id));
+                $dialog
+                    .find("#select-provider")
+                    .append(
+                        new Option(
+                            provider.first_name +
+                                " " +
+                                provider?.middle_name +
+                                " " +
+                                provider.last_name +
+                                " | " +
+                                provider.status,
+                            provider.id
+                        )
+                    );
             }
         });
 

@@ -539,9 +539,10 @@ class Backend_api extends EA_Controller {
 
             $where =
                 '(first_name LIKE upper("%' . $key . '%") OR ' .
-                'last_name  LIKE upper("%' . $key . '%") OR ' .
+                'last_name LIKE upper("%' . $key . '%") OR ' .
                 'email LIKE upper("%' . $key . '%") OR ' .
                 'phone_number LIKE upper("%' . $key . '%") OR ' .
+                'status LIKE upper("%' . $key . '%") OR ' .
                 'address LIKE upper("%' . $key . '%") OR ' .
                 'city LIKE upper("%' . $key . '%") OR ' .
                 'zip_code LIKE upper("%' . $key . '%") OR ' .

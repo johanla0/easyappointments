@@ -197,8 +197,11 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                 var customer = appointment.customer;
                 $dialog.find('#customer-id').val(appointment.id_users_customer);
                 $dialog.find('#first-name').val(customer.first_name);
+                $dialog.find("#middle-name").val(customer.middle_name);
                 $dialog.find('#last-name').val(customer.last_name);
                 $dialog.find('#email').val(customer.email);
+                $dialog.find("#birth-date").val(customer.birth_date),
+                $dialog.find("#status").val(customer.status);
                 $dialog.find('#phone-number').val(customer.phone_number);
                 $dialog.find('#address').val(customer.address);
                 $dialog.find('#city').val(customer.city);
@@ -429,12 +432,34 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
 
         if (GlobalVariables.user.role_slug !== Backend.DB_SLUG_PROVIDER) {
             providers.forEach(function (provider) {
-                $filterProvider.append(new Option(provider.first_name + ' ' + provider.last_name, provider.id));
+                $filterProvider.append(
+                    new Option(
+                        provider.first_name +
+                            " " +
+                            provider?.middle_name +
+                            " " +
+                            provider.last_name +
+                            " | " +
+                            provider.status,
+                        provider.id
+                    )
+                );
             });
         } else {
             providers.forEach(function (provider) {
                 if (Number(provider.id) === Number(GlobalVariables.user.id)) {
-                    $filterProvider.append(new Option(provider.first_name + ' ' + provider.last_name, provider.id));
+                    $filterProvider.append(
+                        new Option(
+                            provider.first_name +
+                                " " +
+                                provider?.middle_name +
+                                " " +
+                                provider.last_name +
+                                " | " +
+                                provider.status,
+                            provider.id
+                        )
+                    );
                 }
             });
         }
@@ -799,10 +824,16 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
 
         $wrapper.fullCalendar('gotoDate', moment(goToDate));
 
-        $('<h6/>', {
-            'text': provider.first_name + ' ' + provider.last_name
-        })
-            .prependTo($providerColumn);
+        $("<h6/>", {
+            text:
+                provider.first_name +
+                " " +
+                provider?.middle_name +
+                " " +
+                provider.last_name +
+                " | " +
+                provider.status,
+        }).prependTo($providerColumn);
     }
 
     function onViewRender(view, element) {
@@ -1167,7 +1198,7 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                         'text': EALang.provider
                     }),
                     $('<span/>', {
-                        'text': event.data ? event.data.provider.first_name + ' ' + event.data.provider.last_name : '-'
+                        'text': event.data ? event.data.provider.first_name + ' ' + event.data.provider.middle_name + ' ' + event.data.provider.last_name : '-'
                     }),
                     $('<br/>'),
 
@@ -1282,7 +1313,7 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                     }),
                     GeneralFunctions.renderMapIcon(event.data.provider),
                     $('<span/>', {
-                        'text': event.data.provider.first_name + ' ' + event.data.provider.last_name
+                        'text': event.data.provider.first_name + ' ' + event.data.provider.middle_name + ' ' + event.data.provider.last_name + ' | ' + event.data.provider.status
                     }),
                     $('<br/>'),
 
@@ -1291,7 +1322,7 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                     }),
                     GeneralFunctions.renderMapIcon(event.data.customer),
                     $('<span/>', {
-                        'text': event.data.customer.first_name + ' ' + event.data.customer.last_name
+                        'text': event.data.customer.first_name + ' ' + event.data.customer.middle_name + ' ' + event.data.customer.last_name + ' | ' + event.data.customer.status
                     }),
                     $('<br/>'),
 

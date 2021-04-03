@@ -81,7 +81,11 @@ class Appointments extends EA_Controller {
                 $stripped_data = [
                     'id' => $provider['id'],
                     'first_name' => $provider['first_name'],
+                    'middle_name' => $provider['middle_name'],
                     'last_name' => $provider['last_name'],
+                    'status' => $provider['status'],
+                    'position' => $provider['position'],
+                    'birth_date' => $provider['birth_date'],
                     'services' => $provider['services'],
                     'timezone' => $provider['timezone']
                 ];
@@ -283,14 +287,21 @@ class Appointments extends EA_Controller {
             'provider_data' => [
                 'id' => $provider['id'],
                 'first_name' => $provider['first_name'],
+                'middle_name' => $provider['middle_name'],
                 'last_name' => $provider['last_name'],
+                'birth_date' => $provider['birth_date'],
+                'status' => $provider['status'],
+                'position' => $provider['position'],
                 'email' => $provider['email'],
                 'timezone' => $provider['timezone'],
             ],
             'customer_data' => [
                 'id' => $customer['id'],
                 'first_name' => $customer['first_name'],
+                'middle_name' => $customer['middle_name'],
                 'last_name' => $customer['last_name'],
+                'birth_date' => $customer['birth_date'],
+                'status' => $customer['status'],
                 'email' => $customer['email'],
                 'timezone' => $customer['timezone'],
             ],
