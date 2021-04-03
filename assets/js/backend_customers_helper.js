@@ -321,47 +321,59 @@
             var start = GeneralFunctions.formatDate(Date.parse(appointment.start_datetime), GlobalVariables.dateFormat, true);
             var end = GeneralFunctions.formatDate(Date.parse(appointment.end_datetime), GlobalVariables.dateFormat, true);
 
-            $('<div/>', {
-                'class': 'appointment-row',
-                'data-id': appointment.id,
-                'html': [
+            $("<div/>", {
+                class: "appointment-row",
+                "data-id": appointment.id,
+                html: [
                     // Service - Provider
 
-                    $('<a/>', {
-                        'href': GlobalVariables.baseUrl + '/index.php/backend/index/' + appointment.hash,
-                        'html': [
-                            $('<i/>', {
-                                'class': 'fas fa-edit mr-1'
+                    $("<a/>", {
+                        href:
+                            GlobalVariables.baseUrl +
+                            "/index.php/backend/index/" +
+                            appointment.hash,
+                        html: [
+                            $("<i/>", {
+                                class: "fas fa-edit mr-1",
                             }),
-                            $('<strong/>', {
-                                'text': appointment.service.name + ' - ' + appointment.provider.first_name + ' ' + appointment.provider.middle_name + ' ' + appointment.provider.last_name
+                            $("<strong/>", {
+                                text:
+                                    appointment.service.name +
+                                    " - " +
+                                    appointment.provider.last_name +
+                                    " " +
+                                    appointment.provider.first_name +
+                                    " " +
+                                    appointment.provider.middle_name,
                             }),
-                            $('<br/>'),
-                        ]
+                            $("<br/>"),
+                        ],
                     }),
 
                     // Start
 
-                    $('<small/>', {
-                        'text': start
+                    $("<small/>", {
+                        text: start,
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
                     // End
 
-                    $('<small/>', {
-                        'text': end
+                    $("<small/>", {
+                        text: end,
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
                     // Timezone
 
-                    $('<small/>', {
-                        'text': GlobalVariables.timezones[appointment.provider.timezone]
-                    })
-                ]
-            })
-                .appendTo('#customer-appointments');
+                    $("<small/>", {
+                        text:
+                            GlobalVariables.timezones[
+                                appointment.provider.timezone
+                            ],
+                    }),
+                ],
+            }).appendTo("#customer-appointments");
         });
     };
 
@@ -430,7 +442,12 @@
      * @return {String} Returns the record HTML code.
      */
     CustomersHelper.prototype.getFilterHtml = function (customer) {
-        var name = customer.first_name + ' ' + customer?.middle_name + ' ' + customer.last_name;
+        var name =
+            customer.last_name +
+            " " +
+            customer.first_name +
+            " " +
+            customer.middle_name;
         
         var info = customer.email;
 

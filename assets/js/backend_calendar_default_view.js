@@ -434,85 +434,107 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                 && GlobalVariables.user.privileges.appointments.delete === true)
                 ? 'mr-2' : 'd-none'; // Same value at the time.
 
-            $html = $('<div/>', {
-                'html': [
-                    $('<strong/>', {
-                        'class': 'd-inline-block mr-2',
-                        'text': EALang.provider
+            $html = $("<div/>", {
+                html: [
+                    $("<strong/>", {
+                        class: "d-inline-block mr-2",
+                        text: EALang.provider,
                     }),
-                    $('<span/>', {
-                        'text': event.data ? event.data.provider.first_name + ' ' + event.data.provider.middle_name + ' ' + event.data.provider.last_name : '-'
+                    $("<span/>", {
+                        text: event.data
+                            ? event.data.provider.last_name +
+                              " " +
+                              event.data.provider.first_name +
+                              " " +
+                              event.data.provider.middle_name
+                            : "-",
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'class': 'd-inline-block mr-2',
-                        'text': EALang.start
+                    $("<strong/>", {
+                        class: "d-inline-block mr-2",
+                        text: EALang.start,
                     }),
-                    $('<span/>', {
-                        'text': GeneralFunctions.formatDate(event.start.format('YYYY-MM-DD HH:mm:ss'), GlobalVariables.dateFormat, true)
+                    $("<span/>", {
+                        text: GeneralFunctions.formatDate(
+                            event.start.format("YYYY-MM-DD HH:mm:ss"),
+                            GlobalVariables.dateFormat,
+                            true
+                        ),
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'class': 'd-inline-block mr-2',
-                        'text': EALang.end
+                    $("<strong/>", {
+                        class: "d-inline-block mr-2",
+                        text: EALang.end,
                     }),
-                    $('<span/>', {
-                        'text': GeneralFunctions.formatDate(event.end.format('YYYY-MM-DD HH:mm:ss'), GlobalVariables.dateFormat, true)
+                    $("<span/>", {
+                        text: GeneralFunctions.formatDate(
+                            event.end.format("YYYY-MM-DD HH:mm:ss"),
+                            GlobalVariables.dateFormat,
+                            true
+                        ),
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'class': 'd-inline-block mr-2',
-                        'text': EALang.timezone
+                    $("<strong/>", {
+                        class: "d-inline-block mr-2",
+                        text: EALang.timezone,
                     }),
-                    $('<span/>', {
-                        'text': GlobalVariables.timezones[event.data.provider.timezone]
+                    $("<span/>", {
+                        text:
+                            GlobalVariables.timezones[
+                                event.data.provider.timezone
+                            ],
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<hr/>'),
+                    $("<hr/>"),
 
-                    $('<div/>', {
-                        'class': 'd-flex justify-content-between',
-                        'html': [
-                            $('<button/>', {
-                                'class': 'close-popover btn btn-outline-secondary',
-                                'html': [
-                                    $('<i/>', {
-                                        'class': 'fas fa-ban mr-2'
+                    $("<div/>", {
+                        class: "d-flex justify-content-between",
+                        html: [
+                            $("<button/>", {
+                                class:
+                                    "close-popover btn btn-outline-secondary",
+                                html: [
+                                    $("<i/>", {
+                                        class: "fas fa-ban mr-2",
                                     }),
-                                    $('<span/>', {
-                                        'text': EALang.close
-                                    })
-                                ]
-                            }),
-                            $('<button/>', {
-                                'class': 'delete-popover btn btn-outline-secondary ' + displayDelete,
-                                'html': [
-                                    $('<i/>', {
-                                        'class': 'fas fa-trash-alt mr-2'
+                                    $("<span/>", {
+                                        text: EALang.close,
                                     }),
-                                    $('<span/>', {
-                                        'text': EALang.delete
-                                    })
-                                ]
+                                ],
                             }),
-                            $('<button/>', {
-                                'class': 'edit-popover btn btn-primary ' + displayEdit,
-                                'html': [
-                                    $('<i/>', {
-                                        'class': 'fas fa-edit mr-2'
+                            $("<button/>", {
+                                class:
+                                    "delete-popover btn btn-outline-secondary " +
+                                    displayDelete,
+                                html: [
+                                    $("<i/>", {
+                                        class: "fas fa-trash-alt mr-2",
                                     }),
-                                    $('<span/>', {
-                                        'text': EALang.edit
-                                    })
-                                ]
+                                    $("<span/>", {
+                                        text: EALang.delete,
+                                    }),
+                                ],
                             }),
-                        ]
-                    })
-                ]
+                            $("<button/>", {
+                                class:
+                                    "edit-popover btn btn-primary " +
+                                    displayEdit,
+                                html: [
+                                    $("<i/>", {
+                                        class: "fas fa-edit mr-2",
+                                    }),
+                                    $("<span/>", {
+                                        text: EALang.edit,
+                                    }),
+                                ],
+                            }),
+                        ],
+                    }),
+                ],
             });
         } else {
             displayEdit = (GlobalVariables.user.privileges.appointments.edit === true)
@@ -520,135 +542,167 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
             displayDelete = (GlobalVariables.user.privileges.appointments.delete === true)
                 ? 'mr-2' : 'd-none';
 
-            $html = $('<div/>', {
-                'html': [
-                    $('<strong/>', {
-                        'class': 'd-inline-block mr-2',
-                        'text': EALang.start
+            $html = $("<div/>", {
+                html: [
+                    $("<strong/>", {
+                        class: "d-inline-block mr-2",
+                        text: EALang.start,
                     }),
-                    $('<span/>', {
-                        'text': GeneralFunctions.formatDate(event.start.format('YYYY-MM-DD HH:mm:ss'), GlobalVariables.dateFormat, true)
+                    $("<span/>", {
+                        text: GeneralFunctions.formatDate(
+                            event.start.format("YYYY-MM-DD HH:mm:ss"),
+                            GlobalVariables.dateFormat,
+                            true
+                        ),
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'class': 'd-inline-block mr-2',
-                        'text': EALang.end
+                    $("<strong/>", {
+                        class: "d-inline-block mr-2",
+                        text: EALang.end,
                     }),
-                    $('<span/>', {
-                        'text': GeneralFunctions.formatDate(event.end.format('YYYY-MM-DD HH:mm:ss'), GlobalVariables.dateFormat, true)
+                    $("<span/>", {
+                        text: GeneralFunctions.formatDate(
+                            event.end.format("YYYY-MM-DD HH:mm:ss"),
+                            GlobalVariables.dateFormat,
+                            true
+                        ),
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'class': 'd-inline-block mr-2',
-                        'text': EALang.timezone
+                    $("<strong/>", {
+                        class: "d-inline-block mr-2",
+                        text: EALang.timezone,
                     }),
-                    $('<span/>', {
-                        'text': GlobalVariables.timezones[event.data.provider.timezone]
+                    $("<span/>", {
+                        text:
+                            GlobalVariables.timezones[
+                                event.data.provider.timezone
+                            ],
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'class': 'd-inline-block mr-2',
-                        'text': EALang.service
+                    $("<strong/>", {
+                        class: "d-inline-block mr-2",
+                        text: EALang.service,
                     }),
-                    $('<span/>', {
-                        'text': event.data.service.name
+                    $("<span/>", {
+                        text: event.data.service.name,
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'class': 'd-inline-block mr-2',
-                        'text': EALang.provider
+                    $("<strong/>", {
+                        class: "d-inline-block mr-2",
+                        text: EALang.provider,
                     }),
                     GeneralFunctions.renderMapIcon(event.data.provider),
-                    $('<span/>', {
-                        'text': event.data.provider.first_name + ' ' + event.data.provider.middle_name + ' ' + event.data.provider.last_name + ' | ' + event.data.provider.status
+                    $("<span/>", {
+                        text:
+                            event.data.provider.last_name +
+                            " " +
+                            event.data.provider.first_name +
+                            " " +
+                            event.data.provider.middle_name +
+                            " | " +
+                            event.data.provider.status,
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'class': 'd-inline-block mr-2',
-                        'text': EALang.customer
+                    $("<strong/>", {
+                        class: "d-inline-block mr-2",
+                        text: EALang.customer,
                     }),
                     GeneralFunctions.renderMapIcon(event.data.customer),
-                    $('<span/>', {
-                        'text': event.data.customer.first_name + ' ' + event.data.customer.middle_name + ' ' + event.data.customer.last_name + ' | ' + event.data.customer.status
+                    $("<span/>", {
+                        text:
+                            event.data.customer.last_name +
+                            " " +
+                            event.data.customer.first_name +
+                            " " +
+                            event.data.customer.middle_name +
+                            " | " +
+                            event.data.customer.status,
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'class': 'd-inline-block mr-2',
-                        'text': EALang.email
+                    $("<strong/>", {
+                        class: "d-inline-block mr-2",
+                        text: EALang.email,
                     }),
                     GeneralFunctions.renderMailIcon(event.data.customer.email),
-                    $('<span/>', {
-                        'class': 'd-inline-block ml-1',
-                        'text': event.data.customer.email
+                    $("<span/>", {
+                        class: "d-inline-block ml-1",
+                        text: event.data.customer.email,
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'class': 'd-inline-block mr-2',
-                        'text': EALang.phone
+                    $("<strong/>", {
+                        class: "d-inline-block mr-2",
+                        text: EALang.phone,
                     }),
-                    GeneralFunctions.renderPhoneIcon(event.data.customer.phone_number),
-                    $('<span/>', {
-                        'class': 'd-inline-block ml-1',
-                        'text': event.data.customer.phone_number
+                    GeneralFunctions.renderPhoneIcon(
+                        event.data.customer.phone_number
+                    ),
+                    $("<span/>", {
+                        class: "d-inline-block ml-1",
+                        text: event.data.customer.phone_number,
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'text': EALang.notes
+                    $("<strong/>", {
+                        text: EALang.notes,
                     }),
-                    $('<span/>', {
-                        'text': getEventNotes(event)
+                    $("<span/>", {
+                        text: getEventNotes(event),
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<hr/>'),
+                    $("<hr/>"),
 
-                    $('<div/>', {
-                        'class': 'd-flex justify-content-center',
-                        'html': [
-                            $('<button/>', {
-                                'class': 'close-popover btn btn-outline-secondary mr-2',
-                                'html': [
-                                    $('<i/>', {
-                                        'class': 'fas fa-ban mr-2'
+                    $("<div/>", {
+                        class: "d-flex justify-content-center",
+                        html: [
+                            $("<button/>", {
+                                class:
+                                    "close-popover btn btn-outline-secondary mr-2",
+                                html: [
+                                    $("<i/>", {
+                                        class: "fas fa-ban mr-2",
                                     }),
-                                    $('<span/>', {
-                                        'text': EALang.close
-                                    })
-                                ]
+                                    $("<span/>", {
+                                        text: EALang.close,
+                                    }),
+                                ],
                             }),
-                            $('<button/>', {
-                                'class': 'delete-popover btn btn-outline-secondary ' + displayDelete,
-                                'html': [
-                                    $('<i/>', {
-                                        'class': 'fas fa-trash-alt mr-2'
+                            $("<button/>", {
+                                class:
+                                    "delete-popover btn btn-outline-secondary " +
+                                    displayDelete,
+                                html: [
+                                    $("<i/>", {
+                                        class: "fas fa-trash-alt mr-2",
                                     }),
-                                    $('<span/>', {
-                                        'text': EALang.delete
-                                    })
-                                ]
+                                    $("<span/>", {
+                                        text: EALang.delete,
+                                    }),
+                                ],
                             }),
-                            $('<button/>', {
-                                'class': 'edit-popover btn btn-primary ' + displayEdit,
-                                'html': [
-                                    $('<i/>', {
-                                        'class': 'fas fa-edit mr-2'
+                            $("<button/>", {
+                                class:
+                                    "edit-popover btn btn-primary " +
+                                    displayEdit,
+                                html: [
+                                    $("<i/>", {
+                                        class: "fas fa-edit mr-2",
                                     }),
-                                    $('<span/>', {
-                                        'text': EALang.edit
-                                    })
-                                ]
-                            })
-                        ]
-                    })
-                ]
+                                    $("<span/>", {
+                                        text: EALang.edit,
+                                    }),
+                                ],
+                            }),
+                        ],
+                    }),
+                ],
             });
         }
 
@@ -1538,11 +1592,11 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                         type: FILTER_TYPE_PROVIDER,
                         "google-sync": hasGoogleSync,
                         text:
+                            availableProvider.last_name +
+                            " " +
                             availableProvider.first_name +
                             " " +
                             availableProvider.middle_name +
-                            " " +
-                            availableProvider.last_name +
                             " | " +
                             availableProvider.status,
                     });

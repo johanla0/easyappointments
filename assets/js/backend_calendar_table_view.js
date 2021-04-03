@@ -434,11 +434,11 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
             providers.forEach(function (provider) {
                 $filterProvider.append(
                     new Option(
-                        provider.first_name +
+                        provider.last_name +
                             " " +
-                            provider?.middle_name +
+                            provider.first_name +
                             " " +
-                            provider.last_name +
+                            provider.middle_name +
                             " | " +
                             provider.status,
                         provider.id
@@ -450,11 +450,11 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                 if (Number(provider.id) === Number(GlobalVariables.user.id)) {
                     $filterProvider.append(
                         new Option(
-                            provider.first_name +
+                            provider.last_name +
                                 " " +
-                                provider?.middle_name +
+                                provider.first_name +
                                 " " +
-                                provider.last_name +
+                                provider.middle_name +
                                 " | " +
                                 provider.status,
                             provider.id
@@ -826,11 +826,11 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
 
         $("<h6/>", {
             text:
+                provider.last_name +
+                " " +
                 provider.first_name +
                 " " +
-                provider?.middle_name +
-                " " +
-                provider.last_name +
+                provider.middle_name +
                 " | " +
                 provider.status,
         }).prependTo($providerColumn);
@@ -1192,81 +1192,103 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                 && GlobalVariables.user.privileges.appointments.delete === true)
                 ? '' : 'd-none'; // Same value at the time.
 
-            $html = $('<div/>', {
-                'html': [
-                    $('<strong/>', {
-                        'text': EALang.provider
+            $html = $("<div/>", {
+                html: [
+                    $("<strong/>", {
+                        text: EALang.provider,
                     }),
-                    $('<span/>', {
-                        'text': event.data ? event.data.provider.first_name + ' ' + event.data.provider.middle_name + ' ' + event.data.provider.last_name : '-'
+                    $("<span/>", {
+                        text: event.data
+                            ? event.data.provider.last_name +
+                              " " +
+                              event.data.provider.first_name +
+                              " " +
+                              event.data.provider.middle_name
+                            : "-",
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'text': EALang.start
+                    $("<strong/>", {
+                        text: EALang.start,
                     }),
-                    $('<span/>', {
-                        'text': GeneralFunctions.formatDate(event.start.format('YYYY-MM-DD HH:mm:ss'), GlobalVariables.dateFormat, true)
+                    $("<span/>", {
+                        text: GeneralFunctions.formatDate(
+                            event.start.format("YYYY-MM-DD HH:mm:ss"),
+                            GlobalVariables.dateFormat,
+                            true
+                        ),
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'text': EALang.end
+                    $("<strong/>", {
+                        text: EALang.end,
                     }),
-                    $('<span/>', {
-                        'text': GeneralFunctions.formatDate(event.end.format('YYYY-MM-DD HH:mm:ss'), GlobalVariables.dateFormat, true)
+                    $("<span/>", {
+                        text: GeneralFunctions.formatDate(
+                            event.end.format("YYYY-MM-DD HH:mm:ss"),
+                            GlobalVariables.dateFormat,
+                            true
+                        ),
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'text': EALang.timezone
+                    $("<strong/>", {
+                        text: EALang.timezone,
                     }),
-                    $('<span/>', {
-                        'text': GlobalVariables.timezones[event.data.provider.timezone]
+                    $("<span/>", {
+                        text:
+                            GlobalVariables.timezones[
+                                event.data.provider.timezone
+                            ],
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<hr/>'),
+                    $("<hr/>"),
 
-                    $('<div/>', {
-                        'class': 'd-flex justify-content-center',
-                        'html': [
-                            $('<button/>', {
-                                'class': 'close-popover btn btn-outline-secondary mr-2',
-                                'html': [
-                                    $('<i/>', {
-                                        'class': 'fas fa-ban mr-2'
+                    $("<div/>", {
+                        class: "d-flex justify-content-center",
+                        html: [
+                            $("<button/>", {
+                                class:
+                                    "close-popover btn btn-outline-secondary mr-2",
+                                html: [
+                                    $("<i/>", {
+                                        class: "fas fa-ban mr-2",
                                     }),
-                                    $('<span/>', {
-                                        'text': EALang.close
-                                    })
-                                ]
+                                    $("<span/>", {
+                                        text: EALang.close,
+                                    }),
+                                ],
                             }),
-                            $('<button/>', {
-                                'class': 'delete-popover btn btn-outline-secondary mr-2 ' + displayDelete,
-                                'html': [
-                                    $('<i/>', {
-                                        'class': 'fas fa-trash-alt mr-2'
+                            $("<button/>", {
+                                class:
+                                    "delete-popover btn btn-outline-secondary mr-2 " +
+                                    displayDelete,
+                                html: [
+                                    $("<i/>", {
+                                        class: "fas fa-trash-alt mr-2",
                                     }),
-                                    $('<span/>', {
-                                        'text': EALang.delete
-                                    })
-                                ]
+                                    $("<span/>", {
+                                        text: EALang.delete,
+                                    }),
+                                ],
                             }),
-                            $('<button/>', {
-                                'class': 'edit-popover btn btn-primary ' + displayEdit,
-                                'html': [
-                                    $('<i/>', {
-                                        'class': 'fas fa-edit mr-2'
+                            $("<button/>", {
+                                class:
+                                    "edit-popover btn btn-primary " +
+                                    displayEdit,
+                                html: [
+                                    $("<i/>", {
+                                        class: "fas fa-edit mr-2",
                                     }),
-                                    $('<span/>', {
-                                        'text': EALang.edit
-                                    })
-                                ]
-                            })
-                        ]
-                    })
-                ]
+                                    $("<span/>", {
+                                        text: EALang.edit,
+                                    }),
+                                ],
+                            }),
+                        ],
+                    }),
+                ],
             });
         } else {
             displayEdit = (GlobalVariables.user.privileges.appointments.edit === true)
@@ -1274,125 +1296,157 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
             displayDelete = (GlobalVariables.user.privileges.appointments.delete === true)
                 ? '' : 'd-none';
 
-            $html = $('<div/>', {
-                'html': [
-                    $('<strong/>', {
-                        'text': EALang.start
+            $html = $("<div/>", {
+                html: [
+                    $("<strong/>", {
+                        text: EALang.start,
                     }),
-                    $('<span/>', {
-                        'text': GeneralFunctions.formatDate(event.start.format('YYYY-MM-DD HH:mm:ss'), GlobalVariables.dateFormat, true)
+                    $("<span/>", {
+                        text: GeneralFunctions.formatDate(
+                            event.start.format("YYYY-MM-DD HH:mm:ss"),
+                            GlobalVariables.dateFormat,
+                            true
+                        ),
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'text': EALang.end
+                    $("<strong/>", {
+                        text: EALang.end,
                     }),
-                    $('<span/>', {
-                        'text': GeneralFunctions.formatDate(event.end.format('YYYY-MM-DD HH:mm:ss'), GlobalVariables.dateFormat, true)
+                    $("<span/>", {
+                        text: GeneralFunctions.formatDate(
+                            event.end.format("YYYY-MM-DD HH:mm:ss"),
+                            GlobalVariables.dateFormat,
+                            true
+                        ),
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'text': EALang.timezone
+                    $("<strong/>", {
+                        text: EALang.timezone,
                     }),
-                    $('<span/>', {
-                        'text': GlobalVariables.timezones[event.data.provider.timezone]
+                    $("<span/>", {
+                        text:
+                            GlobalVariables.timezones[
+                                event.data.provider.timezone
+                            ],
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'text': EALang.service
+                    $("<strong/>", {
+                        text: EALang.service,
                     }),
-                    $('<span/>', {
-                        'text': event.data.service.name
+                    $("<span/>", {
+                        text: event.data.service.name,
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'text': EALang.provider
+                    $("<strong/>", {
+                        text: EALang.provider,
                     }),
                     GeneralFunctions.renderMapIcon(event.data.provider),
-                    $('<span/>', {
-                        'text': event.data.provider.first_name + ' ' + event.data.provider.middle_name + ' ' + event.data.provider.last_name + ' | ' + event.data.provider.status
+                    $("<span/>", {
+                        text:
+                            event.data.provider.last_name +
+                            " " +
+                            event.data.provider.first_name +
+                            " " +
+                            event.data.provider.middle_name +
+                            " | " +
+                            event.data.provider.status,
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'text': EALang.customer
+                    $("<strong/>", {
+                        text: EALang.customer,
                     }),
                     GeneralFunctions.renderMapIcon(event.data.customer),
-                    $('<span/>', {
-                        'text': event.data.customer.first_name + ' ' + event.data.customer.middle_name + ' ' + event.data.customer.last_name + ' | ' + event.data.customer.status
+                    $("<span/>", {
+                        text:
+                            event.data.customer.last_name +
+                            " " +
+                            event.data.customer.first_name +
+                            " " +
+                            event.data.customer.middle_name +
+                            " | " +
+                            event.data.customer.status,
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'text': EALang.email
+                    $("<strong/>", {
+                        text: EALang.email,
                     }),
                     GeneralFunctions.renderMailIcon(event.data.customer.email),
-                    $('<span/>', {
-                        'text': event.data.customer.email
+                    $("<span/>", {
+                        text: event.data.customer.email,
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'text': EALang.phone
+                    $("<strong/>", {
+                        text: EALang.phone,
                     }),
-                    GeneralFunctions.renderPhoneIcon(event.data.customer.phone_number),
-                    $('<span/>', {
-                        'text': event.data.customer.phone_number
+                    GeneralFunctions.renderPhoneIcon(
+                        event.data.customer.phone_number
+                    ),
+                    $("<span/>", {
+                        text: event.data.customer.phone_number,
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<strong/>', {
-                        'text': EALang.notes
+                    $("<strong/>", {
+                        text: EALang.notes,
                     }),
-                    $('<span/>', {
-                        'text': getEventNotes(event)
+                    $("<span/>", {
+                        text: getEventNotes(event),
                     }),
-                    $('<br/>'),
+                    $("<br/>"),
 
-                    $('<hr/>'),
+                    $("<hr/>"),
 
-                    $('<div/>', {
-                        'class': 'd-flex justify-content-center',
-                        'html': [
-                            $('<button/>', {
-                                'class': 'close-popover btn btn-outline-secondary mr-2',
-                                'html': [
-                                    $('<i/>', {
-                                        'class': 'fas fa-ban mr-2'
+                    $("<div/>", {
+                        class: "d-flex justify-content-center",
+                        html: [
+                            $("<button/>", {
+                                class:
+                                    "close-popover btn btn-outline-secondary mr-2",
+                                html: [
+                                    $("<i/>", {
+                                        class: "fas fa-ban mr-2",
                                     }),
-                                    $('<span/>', {
-                                        'text': EALang.close
-                                    })
-                                ]
+                                    $("<span/>", {
+                                        text: EALang.close,
+                                    }),
+                                ],
                             }),
-                            $('<button/>', {
-                                'class': 'delete-popover btn btn-outline-secondary mr-2' + displayDelete,
-                                'html': [
-                                    $('<i/>', {
-                                        'class': 'fas fa-trash-alt mr-2'
+                            $("<button/>", {
+                                class:
+                                    "delete-popover btn btn-outline-secondary mr-2" +
+                                    displayDelete,
+                                html: [
+                                    $("<i/>", {
+                                        class: "fas fa-trash-alt mr-2",
                                     }),
-                                    $('<span/>', {
-                                        'text': EALang.delete
-                                    })
-                                ]
+                                    $("<span/>", {
+                                        text: EALang.delete,
+                                    }),
+                                ],
                             }),
-                            $('<button/>', {
-                                'class': 'edit-popover btn btn-primary ' + displayEdit,
-                                'html': [
-                                    $('<i/>', {
-                                        'class': 'fas fa-edit mr-2'
+                            $("<button/>", {
+                                class:
+                                    "edit-popover btn btn-primary " +
+                                    displayEdit,
+                                html: [
+                                    $("<i/>", {
+                                        class: "fas fa-edit mr-2",
                                     }),
-                                    $('<span/>', {
-                                        'text': EALang.edit
-                                    })
-                                ]
-                            })
-                        ]
-                    })
-                ]
+                                    $("<span/>", {
+                                        text: EALang.edit,
+                                    }),
+                                ],
+                            }),
+                        ],
+                    }),
+                ],
             });
         }
 

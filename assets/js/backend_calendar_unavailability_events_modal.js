@@ -225,11 +225,11 @@ window.BackendCalendarUnavailabilityEventsModal = window.BackendCalendarUnavaila
 
             $unavailabilityProvider.append(
                 new Option(
-                    provider.first_name +
+                    provider.last_name +
                         " " +
-                        provider?.middle_name +
+                        provider.first_name +
                         " " +
-                        provider.last_name +
+                        provider.middle_name +
                         " | " +
                         provider.status,
                     provider.id

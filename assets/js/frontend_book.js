@@ -228,7 +228,18 @@ window.FrontendBook = window.FrontendBook || {};
 
                 if (canServeService) {
                   console.log(JSON.stringify(provider));
-                    $('#select-provider').append(new Option(provider.first_name + ' ' + provider?.middle_name + ' ' + provider.last_name + ' | ' + provider.status, provider.id));
+                    $("#select-provider").append(
+                        new Option(
+                            provider.last_name +
+                                " " +
+                                provider.first_name +
+                                " " +
+                                provider.middle_name +
+                                " | " +
+                                provider.status,
+                            provider.id
+                        )
+                    );
                 }
             });
 

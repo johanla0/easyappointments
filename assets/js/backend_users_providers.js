@@ -525,11 +525,11 @@
      */
     ProvidersHelper.prototype.getFilterHtml = function (provider) {
         var name =
+            provider.last_name +
+            " " +
             provider.first_name +
             " " +
-            provider?.middle_name +
-            " " +
-            provider.last_name +
+            provider.middle_name +
             " | " +
             provider.status,
 

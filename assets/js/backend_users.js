@@ -104,11 +104,11 @@ window.BackendUsers = window.BackendUsers || {};
                             $("<label/>", {
                                 class: "form-check-label",
                                 text:
+                                    provider.last_name +
+                                    " " +
                                     provider.first_name +
                                     " " +
-                                    provider?.middle_name +
-                                    " " +
-                                    provider.last_name +
+                                    provider.middle_name +
                                     " | " +
                                     provider.status,
                                 for: provider.id,
@@ -183,11 +183,11 @@ window.BackendUsers = window.BackendUsers || {};
                                             $("<label/>", {
                                                 class: "form-check-label",
                                                 text:
+                                                    provider.last_name +
+                                                    " " +
                                                     provider.first_name +
                                                     " " +
-                                                    provider?.middle_name +
-                                                    " " +
-                                                    provider.last_name +
+                                                    provider.middle_name +
                                                     " | " +
                                                     provider.status,
                                                 for: provider.id,

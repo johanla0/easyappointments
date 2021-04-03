@@ -191,7 +191,7 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
                 GlobalVariables.customers.forEach(function (customer) {
                     $('<div/>', {
                         'data-id': customer.id,
-                        'text': customer.first_name + ' ' + customer?.middle_name + ' ' + customer.last_name + ' | ' + customer.birth_date,
+                        'text': customer.last_name + ' ' + customer.first_name + ' ' + customer.middle_name + ' | ' + customer.birth_date,
                     })
                         .appendTo($list);
                 });
@@ -263,11 +263,11 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
                             $("<div/>", {
                                 "data-id": customer.id,
                                 text:
+                                    customer.last_name +
+                                    " " +
                                     customer.first_name +
                                     " " +
                                     customer?.middle_name +
-                                    " " +
-                                    customer.last_name +
                                     " | " +
                                     customer.birth_date,
                             }).appendTo($list);
@@ -302,11 +302,11 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
                                 $("<div/>", {
                                     "data-id": customer.id,
                                     text:
+                                        customer.last_name +
+                                        " " +
                                         customer.first_name +
                                         " " +
-                                        customer?.middle_name +
-                                        " " +
-                                        customer.last_name +
+                                        customer.middle_name +
                                         " | " +
                                         customer.birth_date,
                                 }).appendTo($list);
@@ -356,11 +356,11 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
                     if (Number(providerServiceId) === Number(serviceId)) {
                         $("#select-provider").append(
                             new Option(
-                                provider.first_name +
-                                    " " +
-                                    provider?.middle_name +
-                                    " " +
                                     provider.last_name +
+                                    " " +
+                                    provider.first_name +
+                                    " " +
+                                    provider.middle_name +
                                     " | " +
                                     provider.status,
                                 provider.id
@@ -421,11 +421,11 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
                     .find("#select-provider")
                     .append(
                         new Option(
-                            provider.first_name +
+                            provider.last_name +
                                 " " +
-                                provider?.middle_name +
+                                provider.first_name +
                                 " " +
-                                provider.last_name +
+                                provider.middle_name +
                                 " | " +
                                 provider.status,
                             provider.id

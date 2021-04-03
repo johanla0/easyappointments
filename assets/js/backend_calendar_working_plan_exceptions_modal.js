@@ -221,7 +221,18 @@ window.BackendCalendarWorkingPlanExceptionsModal = window.BackendCalendarWorking
 
     exports.initialize = function () {
         GlobalVariables.availableProviders.forEach(function (availableProvider) {
-            $('#working-plan-exception-provider').append(new Option(availableProvider.first_name + " " + availableProvider.middle_name + " " + availableProvider.last_name + " | " + availableProvider.status, availableProvider.id));
+            $("#working-plan-exception-provider").append(
+                new Option(
+                    availableProvider.last_name +
+                        " " +
+                        availableProvider.first_name +
+                        " " +
+                        availableProvider.middle_name +
+                        " | " +
+                        availableProvider.status,
+                    availableProvider.id
+                )
+            );
         });
 
         bindEventHandlers();
